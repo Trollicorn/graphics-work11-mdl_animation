@@ -14,13 +14,7 @@ windows = True
 DEFAULT_COLOR = [0,0,0]
 
 def new_screen( width = XRES, height = YRES ):
-    screen = []
-    for y in range( height ):
-        row = []
-        screen.append( row )
-        for x in range( width ):
-            screen[y].append( DEFAULT_COLOR[:] )
-    return screen
+    return [[DEFAULT_COLOR[:] for x in range(width)] for y in range(height)]
 
 def new_zbuffer( width = XRES, height = YRES ):
     return new_matrix(width,height,float("-inf"))
