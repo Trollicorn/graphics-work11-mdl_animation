@@ -1,11 +1,9 @@
-import mdl
+from compiler import mdl
 from display import *
 from matrix import *
 from draw import *
 from lighting import *
-from solid import *
 from transform import *
-from curve import *
 
 def run(filename):
     """
@@ -89,7 +87,7 @@ def run(filename):
                 draw_polygons(tmp,screen,zbuffer,color,view, ambient, light, areflect, dreflect, sreflect)
             else:
                 const = symbols[command['constants']][1]
-                reflects = [[const['red'][i],const['blue'][i],const['green'][i]] for i in range(3)]
+                reflects = [[const['red'][i],const['green'][i],const['blue'][i]] for i in range(3)]
                 draw_polygons(tmp,screen,zbuffer,color,view, ambient, light, reflects[0], reflects[1], reflects[2])
             tmp = []
         elif op in shape:
