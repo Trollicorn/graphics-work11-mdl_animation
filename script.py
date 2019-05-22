@@ -13,7 +13,7 @@ def run(filename):
     if p:
         (commands, symbols) = p
     else:
-        print "Parsing failed."
+        print("Parsing failed.")
         return
     view = [0,
             0,
@@ -68,8 +68,18 @@ def run(filename):
         "sphere": sphere,
         "torus": torus
     }
-    print symbols
+    frames = 1
+    basename = 'frame'
+    print(symbols)
 #    print csystems
+    for command in commands:
+        op = command['op']
+        if op == 'frames':
+            frames = command['args'][0]
+        elif op == 'basename':
+            basename = command['args'][0]
+###########---------------------CHECK VARY COUNT, IMPLEMENT OPITIMIZATION LATER
+
     for command in commands:
         op = command['op']
         if op == 'constants':
@@ -99,6 +109,7 @@ def run(filename):
             display(screen)
         elif op == 'save':
             save_extension(screen,command['args'][0]+'.png')
-        else:
-            print command['op']
-            print command
+        #else:
+        print(command['op'])
+        print(command)
+    print(knobs)
