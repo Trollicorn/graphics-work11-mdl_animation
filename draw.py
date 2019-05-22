@@ -1,15 +1,12 @@
 from display import *
 from matrix import *
 from lighting import *
-#import random
 
 def draw_lines( matrix, screen, zbuffer,color ):
     for i in range(0,len(matrix)-1,2):
-        #addition
         draw_line(matrix[i][0],matrix[i][1],matrix[i][2],matrix[i+1][0],matrix[i+1][1],matrix[i+1][2],screen,zbuffer,color)
 
 def add_edge( matrix, args): #[x0, y0, z0, x1, y1, z1]
-#    print(args)
     add_point(matrix,args[0],args[1],args[2])
     add_point(matrix,args[3],args[4],args[5])
 
@@ -22,43 +19,21 @@ def add_poly(polygon,x0,y0,z0,x1,y1,z1,x2,y2,z2):
     add_point(polygon,x2,y2,z2)
 
 def draw_polygons(polygons, screen, zbuffer,color, view, ambient, light, areflect, dreflect, sreflect):
-    #print(polygons)
-#    clrs = len(colors)
-#    c = 0
     for i in range(0,len(polygons)-1,3):
         norm = surf(polygons,i)
-#        view = [0,0,1]
-#        n = dot(norm,view) #cosine theta
-#        theta = math.degrees(math.acos(n))
-#        if math.fabs(theta) < 90:
         if norm[2] > 0:
-        #    print polygons[i]
-        #    print polygons[i+1]
-        #    print polygons[i+2]
-        #    print "good"
-    #        color = colors[c%clrs]
-    #        c += 1
             color = get_lighting(norm, view, ambient, light, areflect, dreflect, sreflect)
             scanline(polygons[i],polygons[i+1],polygons[i+2],screen,zbuffer,color)
-#            draw_line(polygons[i][0],polygons[i][1],polygons[i][2],polygons[i+1][0],polygons[i+1][1],polygons[i+1][2],screen,zbuffer,[255,255,255])
-#            draw_line(polygons[i+1][0],polygons[i+1][1],polygons[i+1][2],polygons[i+2][0],polygons[i+2][1],polygons[i+2][2],screen,zbuffer,[255,255,255])
-#            draw_line(polygons[i+2][0],polygons[i+2][1],polygons[i+2][2],polygons[i][0],polygons[i][1],polygons[i][2],screen,zbuffer,[255,255,255])
 
 def scanline(c0,c1,c2,screen,zbuffer,color):
     corners = [c0,c1,c2]
     corners.sort(key=lambda x:x[1])
-#    top = max(corners,key=lambda x: x[1])
-#    bot = min(corners,key=lambda x: x[1])
-#    corners.remove(top)
-#    corners.remove(bot)
-#    mid = corners.pop(0)
     bot = corners[0]
     mid = corners[1]
     top = corners[2]
     Bx = x0 = x1 = bot[0]
     Bz = z0 = z1 = bot[2]
     By = int(bot[1])
-
     Tx = top[0]
     Tz = top[2]
     Ty = int(top[1])

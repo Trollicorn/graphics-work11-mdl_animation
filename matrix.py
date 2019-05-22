@@ -39,31 +39,19 @@ def ident( matrix ):
 def matrix_mult( m1, m2 ):
     cols = len(m2) #num cols of m2
     rows = len(m1) #num rows of m2 same as num cols of m1
-
     #list to store values of current column as temp holder
     curr_col = []
     for r in range(rows):
         curr_col.append(0)
-
     for c in range(cols): #for each col
         for r in range(rows):
             #store values of col in temp holder
             curr_col[r] = m2[c][r]
-        #    print(curr_col[r])
-        #print("done")
         for r in range(rows):
             m2[c][r] = 0 #set new value to zero
             for i in range(rows):
-            #    print(str(temp[r]) + "*" + str(m1[r][i]) + ", ")
-            #    print(str(m2[c][r])+"+"+str(curr_col[i])+"*"+str(m1[c][i]))
-
-
                 #add product of corresponding values
                 m2[c][r]+= curr_col[i] * m1[i][r]
-            #    print("="+str(m2[c][r]))
-            #    print_matrix(m2)
-            #    print("")
-
 
 def new_matrix(rows = 4, cols = 4, n = 0):
     m = []
@@ -86,8 +74,6 @@ def replace(m1,m2): #change contents of m1 to be m2
     for i in range(len(m1)):
         for j in range(len(m1)):
             m1[i][j] = m2[i][j]
-    #del m2
-
 
 def mag(v): #magnitude of vector
     s = 0
@@ -110,7 +96,6 @@ def vadd(v1,v2): #adds elements from v2 to v1 so (v1+v2), returns new vector
 
 def vsubtract(v1,v2): #subtract elements of v2 from v1 so (v1-v2), returns new vector
     return [ v1[i]-v2[i] for i in range(len(v1)) ] #list comprehension
-
 
 def dot(v1,v2):
     s = 0

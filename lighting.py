@@ -17,7 +17,6 @@ LOCATION = 0
 COLOR = 1
 SPECULAR_EXP = 4
 
-
 #lighting functions
 def get_lighting(normal, view, ambient, light, areflect, dreflect, sreflect ):
     A = calculate_ambient(ambient,areflect)
@@ -45,5 +44,4 @@ def calculate_specular(light, sreflect, view, normal): # S = I * K * ( (2*N*(N d
 def limit_color(color):
     for c in range(3):
         color[c] = 255 if color[c] > 255 else 0 if color[c] < 0 else int(color[c])
-    #print(color)
     return color

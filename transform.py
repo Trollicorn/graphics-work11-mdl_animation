@@ -27,7 +27,6 @@ def dilate(matrix,args):
 
 def rotate(matrix,args):
     axis = args[0]
-#    print args[1]
     angle = float(radians(float(args[1])))
     ax = {
         'x': rotateX,
