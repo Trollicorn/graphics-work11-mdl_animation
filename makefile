@@ -2,7 +2,7 @@ run: scripts/simple.mdl compiler/lex.py main.py matrix.py compiler/mdl.py displa
 	python main.py scripts/simple.mdl
 
 clean:
-	rm *pyc *out parsetab.py
+	rm */*pyc */*out */parsetab.py
 
 clear:
-	rm *pyc *out parsetab.py *ppm
+	rm */*pyc *out */parsetab.py */*ppm

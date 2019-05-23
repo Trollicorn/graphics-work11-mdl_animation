@@ -1,4 +1,4 @@
-import lex, yacc
+from compiler import lex, yacc
 
 tokens = (
     "STRING",
@@ -86,7 +86,7 @@ t_ignore = " \t"
 
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
-    if reserved.has_key(t.value):
+    if t.value in reserved:
         t.type = reserved.get(t.value)
     return t
 
@@ -109,7 +109,7 @@ def t_CO(t):
     return t
 
 def t_error(t):
-    print "TOKEN ERROR: " + str(t)
+    print("TOKEN ERROR: " + str(t))
 
 lex.lex()
 
@@ -378,7 +378,7 @@ def p_texture(p):
     symbols[p[2]] = ['texture', p[3:]]
 
 def p_error(p):
-    print 'SYNTAX ERROR: ' + str(p)
+    print('SYNTAX ERROR: ' + str(p))
 
 yacc.yacc()
 
