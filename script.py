@@ -70,6 +70,7 @@ def run(filename):
     }
     frames = 1
     basename = 'frame'
+    knobs = []
     print(symbols)
 #    print csystems
     for command in commands:
@@ -79,6 +80,16 @@ def run(filename):
         elif op == 'basename':
             basename = command['args'][0]
 ###########---------------------CHECK VARY COUNT, IMPLEMENT OPITIMIZATION LATER
+    if frames != 1:
+        knobs = [dict() for]*int(frames)
+        for command in commands:
+            op = command['op']
+            if op == 'vary':
+                args = command['args']
+                rang = args[1]-args[0]+1
+                knob = command['knob']
+                for d in range(int(args[0]),int(args[1])):
+                    knobs[d][knob] = args[2]+(args[3]-args[2])/rang
 
     for command in commands:
         op = command['op']
