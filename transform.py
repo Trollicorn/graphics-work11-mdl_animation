@@ -1,31 +1,31 @@
 from matrix import *
 from math import cos,sin,radians
 
-def translate(matrix,args):
+def translate(matrix,args,knob):
     x = args[0]
     y = args[1]
     z = args[2]
     m = new_matrix()
     ident(m)
-    m[3][0] = x
-    m[3][1] = y
-    m[3][2] = z
+    m[3][0] = x * knob
+    m[3][1] = y * knob
+    m[3][2] = z * knob
     matrix_mult(matrix,m)
     replace(matrix,m)
 
-def dilate(matrix,args):
+def dilate(matrix,args,knob):
     x = args[0]
     y = args[1]
     z = args[2]
     m = new_matrix()
     ident(m)
-    m[0][0] = x
-    m[1][1] = y
-    m[2][2] = z
+    m[0][0] = x * knob
+    m[1][1] = y * knob
+    m[2][2] = z * knob
     matrix_mult(matrix,m)
     replace(matrix,m)
 
-def rotate(matrix,args):
+def rotate(matrix,args,knob):
     axis = args[0]
     angle = float(radians(float(args[1])))
     ax = {
@@ -33,7 +33,7 @@ def rotate(matrix,args):
         'y': rotateY,
         'z': rotateZ
     }
-    ax[axis](matrix,angle)
+    ax[axis](matrix,angle*knob)
 
 def rotateZ(matrix,angle):
     m = new_matrix()

@@ -9,7 +9,7 @@ MAX_COLOR = 255
 RED = 0
 GREEN = 1
 BLUE = 2
-windows = False
+windows = True
 
 DEFAULT_COLOR = [0,0,0]
 
@@ -57,6 +57,12 @@ def save_extension( screen, fname ):
     p = Popen( ['convert', ppm_name, fname ], stdin=PIPE, stdout = PIPE )
     p.communicate()
     remove(ppm_name)
+
+def make_anim(bname):
+    p = Popen( ['convert', '-delay', '1.7', 'anim/' + bname+'*',bname+'.gif'], stdin=PIPE, stdout = PIPE )
+    p.communicate()
+    p = Popen( ['animate', '-delay', '1.7', 'anim/' + bname+'*'], stdin=PIPE, stdout = PIPE )
+    p.communicate()
 
 def display( screen ):
     ppm_name = 'pic.ppm'
